@@ -10,6 +10,9 @@ final class StatusBarController: NSObject {
     private let viewModel: UsageViewModel
     private var eventMonitor: Any?
 
+    /// Cached icon images keyed by pixel size to avoid redrawing every update
+    private var iconCache: [CGFloat: NSImage] = [:]
+
     override init() {
         statusItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.variableLength)
         popover = NSPopover()
@@ -28,8 +31,7 @@ final class StatusBarController: NSObject {
         guard let button = statusItem.button else { return }
         button.action = #selector(handleClick)
         button.target = self
-        // Initial placeholder
-        button.attributedTitle = makeTitle(dot: NSColor.secondaryLabelColor, label: "···")
+        button.attributedTitle = makeTitle(paceColor: .secondaryLabelColor, label: "···")
     }
 
     private func setupPopover() {
@@ -45,47 +47,85 @@ final class StatusBarController: NSObject {
         guard let button = statusItem.button else { return }
 
         guard let pct = viewModel.sessionPercent else {
-            if viewModel.isLoading {
-                button.attributedTitle = makeTitle(dot: NSColor.secondaryLabelColor, label: "···")
-            } else {
-                button.attributedTitle = makeTitle(dot: NSColor.secondaryLabelColor, label: "—")
-            }
+            button.attributedTitle = makeTitle(paceColor: .secondaryLabelColor,
+                                               label: viewModel.isLoading ? "···" : "—")
             return
         }
 
-        let pace = calculatePace(
-            sessionPercent: pct,
-            sessionReset: viewModel.sessionReset
-        )
-
-        button.attributedTitle = makeTitle(dot: pace.nsColor, label: "\(pct)%")
+        let pace = calculatePace(sessionPercent: pct, sessionReset: viewModel.sessionReset)
+        button.attributedTitle = makeTitle(paceColor: pace.nsColor, label: "\(pct)%")
     }
 
-    /// Builds an attributed string: colored ● dot + monospaced percentage label
-    private func makeTitle(dot dotColor: NSColor, label: String) -> NSAttributedString {
+    /// Builds the menu bar attributed string: tiny Claude icon + pace-colored percentage.
+    private func makeTitle(paceColor: NSColor, label: String) -> NSAttributedString {
         let result = NSMutableAttributedString()
 
-        let dotAttrs: [NSAttributedString.Key: Any] = [
-            .foregroundColor: dotColor,
-            .font: NSFont.systemFont(ofSize: 9)
-        ]
-        result.append(NSAttributedString(string: "● ", attributes: dotAttrs))
+        // Claude asterisk icon as an inline text attachment
+        let iconSize: CGFloat = 13
+        let attachment = NSTextAttachment()
+        attachment.image = claudeIcon(size: iconSize)
+        // Vertically center the icon relative to the text baseline
+        attachment.bounds = CGRect(x: 0, y: -2.5, width: iconSize, height: iconSize)
+        result.append(NSAttributedString(attachment: attachment))
 
-        let labelAttrs: [NSAttributedString.Key: Any] = [
-            .foregroundColor: NSColor.labelColor,
-            .font: NSFont.monospacedDigitSystemFont(ofSize: 12, weight: .regular)
-        ]
-        result.append(NSAttributedString(string: label, attributes: labelAttrs))
+        // Thin gap between icon and number
+        result.append(NSAttributedString(string: " ", attributes: [
+            .font: NSFont.systemFont(ofSize: 8)
+        ]))
+
+        // Percentage, colored by pace
+        result.append(NSAttributedString(string: label, attributes: [
+            .foregroundColor: paceColor,
+            .font: NSFont.monospacedDigitSystemFont(ofSize: 12, weight: .medium)
+        ]))
 
         return result
     }
 
-    @objc private func handleClick() {
-        if popover.isShown {
-            closePopover()
-        } else {
-            openPopover()
+    // MARK: - Claude Icon
+
+    /// Draws the Claude logo: 6 rounded petals arranged radially, in Claude orange.
+    private func claudeIcon(size: CGFloat) -> NSImage {
+        if let cached = iconCache[size] { return cached }
+
+        let image = NSImage(size: NSSize(width: size, height: size), flipped: false) { _ in
+            let cx = size / 2
+            let cy = size / 2
+            let numPetals = 6
+            let petalW  = size * 0.21
+            let petalH  = size * 0.42
+            let offsetY = size * 0.10  // distance from center to petal base
+
+            NSColor(red: 0.856, green: 0.467, blue: 0.337, alpha: 1.0).setFill()
+
+            for i in 0..<numPetals {
+                let angleDeg = CGFloat(i) * 360.0 / CGFloat(numPetals)
+
+                // Draw petal centered at origin, then rotate + translate to center
+                let petal = NSBezierPath(
+                    roundedRect: NSRect(x: -petalW / 2, y: offsetY, width: petalW, height: petalH),
+                    xRadius: petalW / 2,
+                    yRadius: petalW / 2
+                )
+
+                let xform = NSAffineTransform()
+                xform.translateX(by: cx, yBy: cy)
+                xform.rotate(byDegrees: angleDeg)
+                petal.transform(using: xform as AffineTransform)
+                petal.fill()
+            }
+            return true
         }
+
+        image.isTemplate = false
+        iconCache[size] = image
+        return image
+    }
+
+    // MARK: - Popover
+
+    @objc private func handleClick() {
+        if popover.isShown { closePopover() } else { openPopover() }
     }
 
     private func openPopover() {

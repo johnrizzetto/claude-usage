@@ -7,7 +7,7 @@ A lightweight native macOS menu bar app that shows your real-time Claude session
 ## Features
 
 - **Live usage data** — current session % and weekly all-models % pulled directly from your Claude account
-- **Pace-based color coding** — the menu bar dot projects your current usage rate to end-of-session and colors accordingly:
+- **Pace-based color coding** — the menu bar shows a tiny Claude icon + your session % number, colored by projected pace:
   - 🟢 Green — on track to use very little
   - 🟡 Yellow — moderate pace, no concern
   - 🟠 Orange — elevated, worth watching
