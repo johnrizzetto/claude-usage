@@ -102,6 +102,11 @@ struct PopoverView: View {
         return calculatePace(sessionPercent: pct, sessionReset: viewModel.sessionReset)
     }
 
+    private var weeklyPace: UsagePace? {
+        guard let pct = viewModel.weeklyPercent else { return nil }
+        return calculateWeeklyPace(weeklyPercent: pct, weeklyReset: viewModel.weeklyReset)
+    }
+
     private var usageContent: some View {
         VStack(alignment: .leading, spacing: 16) {
             UsageRow(
@@ -115,7 +120,9 @@ struct PopoverView: View {
             UsageRow(
                 label: "Weekly · All Models",
                 subtext: viewModel.weeklyReset.map { "Resets \($0)" } ?? "—",
-                percent: viewModel.weeklyPercent
+                percent: viewModel.weeklyPercent,
+                paceColor: weeklyPace?.swiftUIColor,
+                paceLabel: weeklyPace?.label
             )
 
             if viewModel.isLoading {
