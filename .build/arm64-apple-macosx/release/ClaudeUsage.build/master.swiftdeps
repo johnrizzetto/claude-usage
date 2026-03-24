@@ -1,0 +1,14 @@
+version: "Apple Swift version 6.1.2 (swiftlang-6.1.2.1.2 clang-1700.0.13.5)"
+options: "16c43051cffc250f2cffda41d943a0c97d1392a71c6fef32614aad1873ac8ae8"
+build_start_time: [1774385909, 278737000]
+build_end_time: [1774385910, 759807000]
+inputs:
+  "/Users/johnrizzetto/ClaudeUsage/Sources/ClaudeUsage/AppDelegate.swift": [1774385085, 576923804]
+  "/Users/johnrizzetto/ClaudeUsage/Sources/ClaudeUsage/ClaudeWebScraper.swift": [1774385115, 551476658]
+  "/Users/johnrizzetto/ClaudeUsage/Sources/ClaudeUsage/LoginWindowController.swift": [1774385137, 534294736]
+  "/Users/johnrizzetto/ClaudeUsage/Sources/ClaudeUsage/PopoverView.swift": [1774385902, 21496440]
+  "/Users/johnrizzetto/ClaudeUsage/Sources/ClaudeUsage/StatusBarController.swift": [1774385879, 520933208]
+  "/Users/johnrizzetto/ClaudeUsage/Sources/ClaudeUsage/UsageData.swift": [1774385089, 234281921]
+  "/Users/johnrizzetto/ClaudeUsage/Sources/ClaudeUsage/UsagePace.swift": [1774385864, 738045000]
+  "/Users/johnrizzetto/ClaudeUsage/Sources/ClaudeUsage/UsageViewModel.swift": [1774385128, 763202953]
+  "/Users/johnrizzetto/ClaudeUsage/Sources/ClaudeUsage/main.swift": [1774385082, 235893906]

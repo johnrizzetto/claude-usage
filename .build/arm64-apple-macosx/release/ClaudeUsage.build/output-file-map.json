@@ -1,0 +1,52 @@
+{
+  "": {
+    "dependencies": "/Users/johnrizzetto/ClaudeUsage/.build/arm64-apple-macosx/release/ClaudeUsage.build/ClaudeUsage.d",
+    "object": "/Users/johnrizzetto/ClaudeUsage/.build/arm64-apple-macosx/release/ClaudeUsage.build/ClaudeUsage.o",
+    "swift-dependencies": "/Users/johnrizzetto/ClaudeUsage/.build/arm64-apple-macosx/release/ClaudeUsage.build/master.swiftdeps"
+  },
+  "/Users/johnrizzetto/ClaudeUsage/Sources/ClaudeUsage/AppDelegate.swift": {
+    "object": "/Users/johnrizzetto/ClaudeUsage/.build/arm64-apple-macosx/release/ClaudeUsage.build/AppDelegate.swift.o",
+    "swiftmodule": "/Users/johnrizzetto/ClaudeUsage/.build/arm64-apple-macosx/release/ClaudeUsage.build/AppDelegate~partial.swiftmodule",
+    "swift-dependencies": "/Users/johnrizzetto/ClaudeUsage/.build/arm64-apple-macosx/release/ClaudeUsage.build/AppDelegate.swiftdeps"
+  },
+  "/Users/johnrizzetto/ClaudeUsage/Sources/ClaudeUsage/ClaudeWebScraper.swift": {
+    "object": "/Users/johnrizzetto/ClaudeUsage/.build/arm64-apple-macosx/release/ClaudeUsage.build/ClaudeWebScraper.swift.o",
+    "swiftmodule": "/Users/johnrizzetto/ClaudeUsage/.build/arm64-apple-macosx/release/ClaudeUsage.build/ClaudeWebScraper~partial.swiftmodule",
+    "swift-dependencies": "/Users/johnrizzetto/ClaudeUsage/.build/arm64-apple-macosx/release/ClaudeUsage.build/ClaudeWebScraper.swiftdeps"
+  },
+  "/Users/johnrizzetto/ClaudeUsage/Sources/ClaudeUsage/LoginWindowController.swift": {
+    "object": "/Users/johnrizzetto/ClaudeUsage/.build/arm64-apple-macosx/release/ClaudeUsage.build/LoginWindowController.swift.o",
+    "swiftmodule": "/Users/johnrizzetto/ClaudeUsage/.build/arm64-apple-macosx/release/ClaudeUsage.build/LoginWindowController~partial.swiftmodule",
+    "swift-dependencies": "/Users/johnrizzetto/ClaudeUsage/.build/arm64-apple-macosx/release/ClaudeUsage.build/LoginWindowController.swiftdeps"
+  },
+  "/Users/johnrizzetto/ClaudeUsage/Sources/ClaudeUsage/PopoverView.swift": {
+    "object": "/Users/johnrizzetto/ClaudeUsage/.build/arm64-apple-macosx/release/ClaudeUsage.build/PopoverView.swift.o",
+    "swiftmodule": "/Users/johnrizzetto/ClaudeUsage/.build/arm64-apple-macosx/release/ClaudeUsage.build/PopoverView~partial.swiftmodule",
+    "swift-dependencies": "/Users/johnrizzetto/ClaudeUsage/.build/arm64-apple-macosx/release/ClaudeUsage.build/PopoverView.swiftdeps"
+  },
+  "/Users/johnrizzetto/ClaudeUsage/Sources/ClaudeUsage/StatusBarController.swift": {
+    "object": "/Users/johnrizzetto/ClaudeUsage/.build/arm64-apple-macosx/release/ClaudeUsage.build/StatusBarController.swift.o",
+    "swiftmodule": "/Users/johnrizzetto/ClaudeUsage/.build/arm64-apple-macosx/release/ClaudeUsage.build/StatusBarController~partial.swiftmodule",
+    "swift-dependencies": "/Users/johnrizzetto/ClaudeUsage/.build/arm64-apple-macosx/release/ClaudeUsage.build/StatusBarController.swiftdeps"
+  },
+  "/Users/johnrizzetto/ClaudeUsage/Sources/ClaudeUsage/UsageData.swift": {
+    "object": "/Users/johnrizzetto/ClaudeUsage/.build/arm64-apple-macosx/release/ClaudeUsage.build/UsageData.swift.o",
+    "swiftmodule": "/Users/johnrizzetto/ClaudeUsage/.build/arm64-apple-macosx/release/ClaudeUsage.build/UsageData~partial.swiftmodule",
+    "swift-dependencies": "/Users/johnrizzetto/ClaudeUsage/.build/arm64-apple-macosx/release/ClaudeUsage.build/UsageData.swiftdeps"
+  },
+  "/Users/johnrizzetto/ClaudeUsage/Sources/ClaudeUsage/UsagePace.swift": {
+    "object": "/Users/johnrizzetto/ClaudeUsage/.build/arm64-apple-macosx/release/ClaudeUsage.build/UsagePace.swift.o",
+    "swiftmodule": "/Users/johnrizzetto/ClaudeUsage/.build/arm64-apple-macosx/release/ClaudeUsage.build/UsagePace~partial.swiftmodule",
+    "swift-dependencies": "/Users/johnrizzetto/ClaudeUsage/.build/arm64-apple-macosx/release/ClaudeUsage.build/UsagePace.swiftdeps"
+  },
+  "/Users/johnrizzetto/ClaudeUsage/Sources/ClaudeUsage/UsageViewModel.swift": {
+    "object": "/Users/johnrizzetto/ClaudeUsage/.build/arm64-apple-macosx/release/ClaudeUsage.build/UsageViewModel.swift.o",
+    "swiftmodule": "/Users/johnrizzetto/ClaudeUsage/.build/arm64-apple-macosx/release/ClaudeUsage.build/UsageViewModel~partial.swiftmodule",
+    "swift-dependencies": "/Users/johnrizzetto/ClaudeUsage/.build/arm64-apple-macosx/release/ClaudeUsage.build/UsageViewModel.swiftdeps"
+  },
+  "/Users/johnrizzetto/ClaudeUsage/Sources/ClaudeUsage/main.swift": {
+    "object": "/Users/johnrizzetto/ClaudeUsage/.build/arm64-apple-macosx/release/ClaudeUsage.build/main.swift.o",
+    "swiftmodule": "/Users/johnrizzetto/ClaudeUsage/.build/arm64-apple-macosx/release/ClaudeUsage.build/main~partial.swiftmodule",
+    "swift-dependencies": "/Users/johnrizzetto/ClaudeUsage/.build/arm64-apple-macosx/release/ClaudeUsage.build/main.swiftdeps"
+  }
+}

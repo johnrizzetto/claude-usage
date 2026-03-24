@@ -1,0 +1,66 @@
+client:
+  name: basic
+  file-system: device-agnostic
+tools: {}
+targets:
+  "ClaudeUsage-arm64-apple-macosx16.0-release.exe": ["<ClaudeUsage-arm64-apple-macosx16.0-release.exe>"]
+  "ClaudeUsage-arm64-apple-macosx16.0-release.module": ["<ClaudeUsage-arm64-apple-macosx16.0-release.module>"]
+  "PackageStructure": ["<PackageStructure>"]
+  "main": ["<ClaudeUsage-arm64-apple-macosx16.0-release.exe>","<ClaudeUsage-arm64-apple-macosx16.0-release.module>"]
+  "test": ["<ClaudeUsage-arm64-apple-macosx16.0-release.exe>","<ClaudeUsage-arm64-apple-macosx16.0-release.module>"]
+default: "main"
+nodes:
+  "/Users/johnrizzetto/ClaudeUsage/Sources/ClaudeUsage/":
+    is-directory-structure: true
+    content-exclusion-patterns: [".git",".build"]
+commands:
+  "/Users/johnrizzetto/ClaudeUsage/.build/arm64-apple-macosx/release/ClaudeUsage.build/sources":
+    tool: write-auxiliary-file
+    inputs: ["<sources-file-list>","/Users/johnrizzetto/ClaudeUsage/Sources/ClaudeUsage/AppDelegate.swift","/Users/johnrizzetto/ClaudeUsage/Sources/ClaudeUsage/ClaudeWebScraper.swift","/Users/johnrizzetto/ClaudeUsage/Sources/ClaudeUsage/LoginWindowController.swift","/Users/johnrizzetto/ClaudeUsage/Sources/ClaudeUsage/PopoverView.swift","/Users/johnrizzetto/ClaudeUsage/Sources/ClaudeUsage/StatusBarController.swift","/Users/johnrizzetto/ClaudeUsage/Sources/ClaudeUsage/UsageData.swift","/Users/johnrizzetto/ClaudeUsage/Sources/ClaudeUsage/UsagePace.swift","/Users/johnrizzetto/ClaudeUsage/Sources/ClaudeUsage/UsageViewModel.swift","/Users/johnrizzetto/ClaudeUsage/Sources/ClaudeUsage/main.swift"]
+    outputs: ["/Users/johnrizzetto/ClaudeUsage/.build/arm64-apple-macosx/release/ClaudeUsage.build/sources"]
+    description: "Write auxiliary file /Users/johnrizzetto/ClaudeUsage/.build/arm64-apple-macosx/release/ClaudeUsage.build/sources"
+
+  "/Users/johnrizzetto/ClaudeUsage/.build/arm64-apple-macosx/release/ClaudeUsage.product/Objects.LinkFileList":
+    tool: write-auxiliary-file
+    inputs: ["<link-file-list>","/Users/johnrizzetto/ClaudeUsage/.build/arm64-apple-macosx/release/ClaudeUsage.build/AppDelegate.swift.o","/Users/johnrizzetto/ClaudeUsage/.build/arm64-apple-macosx/release/ClaudeUsage.build/ClaudeWebScraper.swift.o","/Users/johnrizzetto/ClaudeUsage/.build/arm64-apple-macosx/release/ClaudeUsage.build/LoginWindowController.swift.o","/Users/johnrizzetto/ClaudeUsage/.build/arm64-apple-macosx/release/ClaudeUsage.build/PopoverView.swift.o","/Users/johnrizzetto/ClaudeUsage/.build/arm64-apple-macosx/release/ClaudeUsage.build/StatusBarController.swift.o","/Users/johnrizzetto/ClaudeUsage/.build/arm64-apple-macosx/release/ClaudeUsage.build/UsageData.swift.o","/Users/johnrizzetto/ClaudeUsage/.build/arm64-apple-macosx/release/ClaudeUsage.build/UsagePace.swift.o","/Users/johnrizzetto/ClaudeUsage/.build/arm64-apple-macosx/release/ClaudeUsage.build/UsageViewModel.swift.o","/Users/johnrizzetto/ClaudeUsage/.build/arm64-apple-macosx/release/ClaudeUsage.build/main.swift.o"]
+    outputs: ["/Users/johnrizzetto/ClaudeUsage/.build/arm64-apple-macosx/release/ClaudeUsage.product/Objects.LinkFileList"]
+    description: "Write auxiliary file /Users/johnrizzetto/ClaudeUsage/.build/arm64-apple-macosx/release/ClaudeUsage.product/Objects.LinkFileList"
+
+  "/Users/johnrizzetto/ClaudeUsage/.build/arm64-apple-macosx/release/swift-version--1AB21518FC5DEDBE.txt":
+    tool: write-auxiliary-file
+    inputs: ["<swift-get-version>","/Library/Developer/CommandLineTools/usr/bin/swiftc"]
+    outputs: ["/Users/johnrizzetto/ClaudeUsage/.build/arm64-apple-macosx/release/swift-version--1AB21518FC5DEDBE.txt"]
+    always-out-of-date: "true"
+    description: "Write auxiliary file /Users/johnrizzetto/ClaudeUsage/.build/arm64-apple-macosx/release/swift-version--1AB21518FC5DEDBE.txt"
+
+  "<ClaudeUsage-arm64-apple-macosx16.0-release.exe>":
+    tool: phony
+    inputs: ["/Users/johnrizzetto/ClaudeUsage/.build/arm64-apple-macosx/release/ClaudeUsage"]
+    outputs: ["<ClaudeUsage-arm64-apple-macosx16.0-release.exe>"]
+
+  "<ClaudeUsage-arm64-apple-macosx16.0-release.module>":
+    tool: phony
+    inputs: ["/Users/johnrizzetto/ClaudeUsage/.build/arm64-apple-macosx/release/ClaudeUsage.build/AppDelegate.swift.o","/Users/johnrizzetto/ClaudeUsage/.build/arm64-apple-macosx/release/ClaudeUsage.build/ClaudeWebScraper.swift.o","/Users/johnrizzetto/ClaudeUsage/.build/arm64-apple-macosx/release/ClaudeUsage.build/LoginWindowController.swift.o","/Users/johnrizzetto/ClaudeUsage/.build/arm64-apple-macosx/release/ClaudeUsage.build/PopoverView.swift.o","/Users/johnrizzetto/ClaudeUsage/.build/arm64-apple-macosx/release/ClaudeUsage.build/StatusBarController.swift.o","/Users/johnrizzetto/ClaudeUsage/.build/arm64-apple-macosx/release/ClaudeUsage.build/UsageData.swift.o","/Users/johnrizzetto/ClaudeUsage/.build/arm64-apple-macosx/release/ClaudeUsage.build/UsagePace.swift.o","/Users/johnrizzetto/ClaudeUsage/.build/arm64-apple-macosx/release/ClaudeUsage.build/UsageViewModel.swift.o","/Users/johnrizzetto/ClaudeUsage/.build/arm64-apple-macosx/release/ClaudeUsage.build/main.swift.o","/Users/johnrizzetto/ClaudeUsage/.build/arm64-apple-macosx/release/Modules/ClaudeUsage.swiftmodule"]
+    outputs: ["<ClaudeUsage-arm64-apple-macosx16.0-release.module>"]
+
+  "C.ClaudeUsage-arm64-apple-macosx16.0-release.exe":
+    tool: shell
+    inputs: ["/Users/johnrizzetto/ClaudeUsage/.build/arm64-apple-macosx/release/ClaudeUsage.build/AppDelegate.swift.o","/Users/johnrizzetto/ClaudeUsage/.build/arm64-apple-macosx/release/ClaudeUsage.build/ClaudeWebScraper.swift.o","/Users/johnrizzetto/ClaudeUsage/.build/arm64-apple-macosx/release/ClaudeUsage.build/LoginWindowController.swift.o","/Users/johnrizzetto/ClaudeUsage/.build/arm64-apple-macosx/release/ClaudeUsage.build/PopoverView.swift.o","/Users/johnrizzetto/ClaudeUsage/.build/arm64-apple-macosx/release/ClaudeUsage.build/StatusBarController.swift.o","/Users/johnrizzetto/ClaudeUsage/.build/arm64-apple-macosx/release/ClaudeUsage.build/UsageData.swift.o","/Users/johnrizzetto/ClaudeUsage/.build/arm64-apple-macosx/release/ClaudeUsage.build/UsagePace.swift.o","/Users/johnrizzetto/ClaudeUsage/.build/arm64-apple-macosx/release/ClaudeUsage.build/UsageViewModel.swift.o","/Users/johnrizzetto/ClaudeUsage/.build/arm64-apple-macosx/release/ClaudeUsage.build/main.swift.o","/Users/johnrizzetto/ClaudeUsage/.build/arm64-apple-macosx/release/ClaudeUsage.product/Objects.LinkFileList"]
+    outputs: ["/Users/johnrizzetto/ClaudeUsage/.build/arm64-apple-macosx/release/ClaudeUsage"]
+    description: "Linking ./.build/arm64-apple-macosx/release/ClaudeUsage"
+    args: ["/Library/Developer/CommandLineTools/usr/bin/swiftc","-L","/Users/johnrizzetto/ClaudeUsage/.build/arm64-apple-macosx/release","-o","/Users/johnrizzetto/ClaudeUsage/.build/arm64-apple-macosx/release/ClaudeUsage","-module-name","ClaudeUsage","-Xlinker","-no_warn_duplicate_libraries","-emit-executable","-Xlinker","-dead_strip","-Xlinker","-alias","-Xlinker","_ClaudeUsage_main","-Xlinker","_main","-Xlinker","-rpath","-Xlinker","@loader_path","@/Users/johnrizzetto/ClaudeUsage/.build/arm64-apple-macosx/release/ClaudeUsage.product/Objects.LinkFileList","-target","arm64-apple-macosx13.0","-F","/Library/Developer/CommandLineTools/Library/Developer/Frameworks","-sdk","/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk","-g","-Xlinker","-rpath","-Xlinker","/Library/Developer/CommandLineTools/Library/Developer/Frameworks"]
+
+  "C.ClaudeUsage-arm64-apple-macosx16.0-release.module":
+    tool: shell
+    inputs: ["/Users/johnrizzetto/ClaudeUsage/Sources/ClaudeUsage/AppDelegate.swift","/Users/johnrizzetto/ClaudeUsage/Sources/ClaudeUsage/ClaudeWebScraper.swift","/Users/johnrizzetto/ClaudeUsage/Sources/ClaudeUsage/LoginWindowController.swift","/Users/johnrizzetto/ClaudeUsage/Sources/ClaudeUsage/PopoverView.swift","/Users/johnrizzetto/ClaudeUsage/Sources/ClaudeUsage/StatusBarController.swift","/Users/johnrizzetto/ClaudeUsage/Sources/ClaudeUsage/UsageData.swift","/Users/johnrizzetto/ClaudeUsage/Sources/ClaudeUsage/UsagePace.swift","/Users/johnrizzetto/ClaudeUsage/Sources/ClaudeUsage/UsageViewModel.swift","/Users/johnrizzetto/ClaudeUsage/Sources/ClaudeUsage/main.swift","/Users/johnrizzetto/ClaudeUsage/.build/arm64-apple-macosx/release/swift-version--1AB21518FC5DEDBE.txt","/Users/johnrizzetto/ClaudeUsage/.build/arm64-apple-macosx/release/ClaudeUsage.build/sources"]
+    outputs: ["/Users/johnrizzetto/ClaudeUsage/.build/arm64-apple-macosx/release/ClaudeUsage.build/AppDelegate.swift.o","/Users/johnrizzetto/ClaudeUsage/.build/arm64-apple-macosx/release/ClaudeUsage.build/ClaudeWebScraper.swift.o","/Users/johnrizzetto/ClaudeUsage/.build/arm64-apple-macosx/release/ClaudeUsage.build/LoginWindowController.swift.o","/Users/johnrizzetto/ClaudeUsage/.build/arm64-apple-macosx/release/ClaudeUsage.build/PopoverView.swift.o","/Users/johnrizzetto/ClaudeUsage/.build/arm64-apple-macosx/release/ClaudeUsage.build/StatusBarController.swift.o","/Users/johnrizzetto/ClaudeUsage/.build/arm64-apple-macosx/release/ClaudeUsage.build/UsageData.swift.o","/Users/johnrizzetto/ClaudeUsage/.build/arm64-apple-macosx/release/ClaudeUsage.build/UsagePace.swift.o","/Users/johnrizzetto/ClaudeUsage/.build/arm64-apple-macosx/release/ClaudeUsage.build/UsageViewModel.swift.o","/Users/johnrizzetto/ClaudeUsage/.build/arm64-apple-macosx/release/ClaudeUsage.build/main.swift.o","/Users/johnrizzetto/ClaudeUsage/.build/arm64-apple-macosx/release/Modules/ClaudeUsage.swiftmodule"]
+    description: "Compiling Swift Module 'ClaudeUsage' (9 sources)"
+    args: ["/Library/Developer/CommandLineTools/usr/bin/swiftc","-module-name","ClaudeUsage","-emit-dependencies","-emit-module","-emit-module-path","/Users/johnrizzetto/ClaudeUsage/.build/arm64-apple-macosx/release/Modules/ClaudeUsage.swiftmodule","-output-file-map","/Users/johnrizzetto/ClaudeUsage/.build/arm64-apple-macosx/release/ClaudeUsage.build/output-file-map.json","-whole-module-optimization","-num-threads","10","-c","@/Users/johnrizzetto/ClaudeUsage/.build/arm64-apple-macosx/release/ClaudeUsage.build/sources","-I","/Users/johnrizzetto/ClaudeUsage/.build/arm64-apple-macosx/release/Modules","-target","arm64-apple-macosx13.0","-O","-j10","-DSWIFT_PACKAGE","-module-cache-path","/Users/johnrizzetto/ClaudeUsage/.build/arm64-apple-macosx/release/ModuleCache","-parseable-output","-Xfrontend","-entry-point-function-name","-Xfrontend","ClaudeUsage_main","-swift-version","5","-F","/Library/Developer/CommandLineTools/Library/Developer/Frameworks","-sdk","/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk","-g","-Xcc","-isysroot","-Xcc","/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk","-Xcc","-fPIC","-Xcc","-g","-package-name","claudeusage"]
+
+  "PackageStructure":
+    tool: package-structure-tool
+    inputs: ["/Users/johnrizzetto/ClaudeUsage/Sources/ClaudeUsage/","/Users/johnrizzetto/ClaudeUsage/Package.swift","/Users/johnrizzetto/ClaudeUsage/Package.resolved"]
+    outputs: ["<PackageStructure>"]
+    description: "Planning build"
+    allow-missing-inputs: true
+
