@@ -107,6 +107,21 @@ struct PopoverView: View {
         return calculateWeeklyPace(weeklyPercent: pct, weeklyReset: viewModel.weeklyReset)
     }
 
+    /// Fraction of the 5-hour session window that has elapsed (0–1).
+    private var sessionExpectedFraction: Double? {
+        guard let reset = viewModel.sessionReset,
+              let minutesLeft = parseMinutesRemaining(reset) else { return nil }
+        return max(0, min((300.0 - Double(minutesLeft)) / 300.0, 1))
+    }
+
+    /// Fraction of the 7-day weekly window that has elapsed (0–1).
+    private var weeklyExpectedFraction: Double? {
+        guard let reset = viewModel.weeklyReset,
+              let minutesLeft = parseWeeklyMinutesRemaining(reset) else { return nil }
+        let total = 7.0 * 24 * 60
+        return max(0, min((total - Double(minutesLeft)) / total, 1))
+    }
+
     private var usageContent: some View {
         VStack(alignment: .leading, spacing: 16) {
             UsageRow(
@@ -114,7 +129,8 @@ struct PopoverView: View {
                 subtext: viewModel.sessionReset.map { "Resets in \($0)" } ?? "—",
                 percent: viewModel.sessionPercent,
                 paceColor: sessionPace?.swiftUIColor,
-                paceLabel: sessionPace?.label
+                paceLabel: sessionPace?.label,
+                expectedFraction: sessionExpectedFraction
             )
 
             UsageRow(
@@ -122,7 +138,8 @@ struct PopoverView: View {
                 subtext: viewModel.weeklyReset.map { "Resets \($0)" } ?? "—",
                 percent: viewModel.weeklyPercent,
                 paceColor: weeklyPace?.swiftUIColor,
-                paceLabel: weeklyPace?.label
+                paceLabel: weeklyPace?.label,
+                expectedFraction: weeklyExpectedFraction
             )
 
             if viewModel.isLoading {
@@ -169,8 +186,9 @@ struct UsageRow: View {
     let label: String
     let subtext: String
     let percent: Int?
-    var paceColor: Color? = nil   // pace-based override (session row only)
-    var paceLabel: String? = nil  // "Low usage", "On pace", etc.
+    var paceColor: Color? = nil        // pace-based override (session row only)
+    var paceLabel: String? = nil       // "Low usage", "On pace", etc.
+    var expectedFraction: Double? = nil // where you should be based on time elapsed
 
     private var fraction: Double {
         guard let p = percent else { return 0 }
@@ -204,7 +222,7 @@ struct UsageRow: View {
             }
 
             GeometryReader { geo in
-                ZStack(alignment: .leading) {
+                ZStack(alignment: .topLeading) {
                     RoundedRectangle(cornerRadius: 4)
                         .fill(Color.secondary.opacity(0.15))
                         .frame(height: 7)
@@ -213,13 +231,39 @@ struct UsageRow: View {
                         .fill(barColor)
                         .frame(width: geo.size.width * fraction, height: 7)
                         .animation(.easeInOut(duration: 0.6), value: fraction)
+
+                    if let ef = expectedFraction {
+                        let x = geo.size.width * ef
+                        VStack(spacing: 0) {
+                            Rectangle()
+                                .fill(Color.primary.opacity(0.45))
+                                .frame(width: 1.5, height: 7)
+                            PaceTriangle()
+                                .fill(Color.primary.opacity(0.45))
+                                .frame(width: 6, height: 4)
+                        }
+                        .offset(x: x - 0.75)
+                    }
                 }
             }
-            .frame(height: 7)
+            .frame(height: expectedFraction != nil ? 11 : 7)
 
             Text(subtext)
                 .font(.system(size: 10))
                 .foregroundColor(.secondary)
         }
+    }
+}
+
+// MARK: - Pace marker triangle (points upward from below the bar)
+
+private struct PaceTriangle: Shape {
+    func path(in rect: CGRect) -> Path {
+        var p = Path()
+        p.move(to: CGPoint(x: rect.midX, y: rect.minY))
+        p.addLine(to: CGPoint(x: rect.maxX, y: rect.maxY))
+        p.addLine(to: CGPoint(x: rect.minX, y: rect.maxY))
+        p.closeSubpath()
+        return p
     }
 }
